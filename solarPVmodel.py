@@ -12,7 +12,6 @@ warnings.filterwarnings('ignore')
 
 @dataclass
 class PVParameters:
-    """Solar PV panel specifications and constants."""
     eta_ref: float = 0.20          # Reference efficiency (20%)
     beta: float = 0.0045           # Temperature coefficient (1/°C)
     T_ref: float = 25.0            # Reference temperature (°C)
@@ -21,19 +20,13 @@ class PVParameters:
     rated_power: float = 300.0     # Rated power at STC (W)
     
     def __post_init__(self):
-        """Validate parameters."""
+        
         assert 0 < self.eta_ref < 1, "Efficiency must be between 0 and 1"
         assert self.beta > 0, "Temperature coefficient must be positive"
         assert self.area > 0, "Area must be positive"
 
 
 class SolarPVModel:
-    """
-    Solar PV power output model.
-    
-    Core Equation (from thesis Section 2.2.1):
-    P_PV = η_ref * [1 - β(T_cell - T_ref)] * G_t * A
-    """
     
     def __init__(self, params: Optional[PVParameters] = None):
         self.params = params if params else PVParameters()
@@ -43,17 +36,7 @@ class SolarPVModel:
                                    T_ambient: float, 
                                    G_t: float,
                                    wind_speed: Optional[float] = None) -> float:
-        """
-        Estimate cell temperature from ambient conditions using NOCT correlation.
         
-        Args:
-            T_ambient: Ambient temperature (°C)
-            G_t: Solar irradiance (W/m²)
-            wind_speed: Wind speed (m/s), optional
-            
-        Returns:
-            Cell temperature (°C)
-        """
         if G_t <= 0:
             return T_ambient
         
@@ -69,18 +52,7 @@ class SolarPVModel:
         return T_cell
     
     def calculate_power(self, G_t: float, T_cell: float) -> float:
-        """
-        Calculate PV power output.
-        
-        P_PV = η_ref * [1 - β(T_cell - T_ref)] * G_t * A
-        
-        Args:
-            G_t: Solar irradiance (W/m²)
-            T_cell: Cell temperature (°C)
-            
-        Returns:
-            Power output (W)
-        """
+   
         if G_t <= 0:
             return 0.0
         
@@ -103,16 +75,12 @@ class SolarPVModel:
                            ambient_temp: np.ndarray,
                            wind_speed: Optional[np.ndarray] = None,
                            timestamps: Optional[np.ndarray] = None) -> pd.DataFrame:
-        """
-        Simulate PV output over time period.
-        
-        Returns DataFrame with: time, irradiance, ambient_temp, cell_temp, power, efficiency
-        """
+      
         n = len(irradiance)
-        assert len(ambient_temp) == n, "Temperature profile length mismatch"
+        assert len(ambient_temp) == n,
         
         if wind_speed is not None:
-            assert len(wind_speed) == n, "Wind speed profile length mismatch"
+            assert len(wind_speed) == n, 
         
         power_output = np.zeros(n)
         cell_temps = np.zeros(n)
@@ -142,3 +110,4 @@ class SolarPVModel:
         
         self.simulation_results = results
         return results
+
