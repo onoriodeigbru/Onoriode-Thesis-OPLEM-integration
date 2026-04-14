@@ -7,7 +7,7 @@ import pandas as pd
 def simulate_pv(
         irradiance: np.ndarray,
         temp_air: np.ndarray,
-        rated_power: float = 300.0,
+        rated_power: float = 50000.0, #100 arrays of 500W solar panels
         temp_coeff: float = -0.004,
         ref_temperature: float = 25.0,
         min_irradiance: float = 50.0
