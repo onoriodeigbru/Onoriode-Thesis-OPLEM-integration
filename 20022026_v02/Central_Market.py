@@ -1,6 +1,6 @@
 #import modules
 import os
-os.environ['MOSEKLM_LICENSE_FILE'] = r'C:\Users\DELL PRECISION\mosek\mosek.lic'
+os.environ['MOSEKLM_LICENSE_FILE'] = r'C:\Users\onori\OneDrive\Desktop\Mosek\mosek.lic'
 
 import copy
 import pandas as pd
