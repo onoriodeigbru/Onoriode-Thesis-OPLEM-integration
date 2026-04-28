@@ -75,7 +75,7 @@ ax1.set_xlabel("Time (h)", fontsize=8)
 ax1.set_xticks([0,8,16,23],('00:00', '08:00', '16:00', '23:00'))
 ax1.legend(fontsize=8, loc='right', ncol=1)
 ax1.grid(True, alpha=0.25)
-ax1.set_title("Import price · Export price · DLMP (all buses)", fontsize=11)
+ax1.set_title("a) Import price · Export price · DLMP (all buses)", fontsize=11)
 
 # ── panel 2 : DLMP heatmap (buses × time) ─────────────────────────────────────
 ax2 = fig.add_subplot(gs[1])
@@ -88,7 +88,7 @@ cb.set_label("DLMP (£/kWh)", fontsize=9)
 ax2.set_xlabel("Time (h)", fontsize=8)
 ax2.set_ylabel("Bus index", fontsize=10)
 ax2.set_xticks([0,8,16,23],('00:00', '08:00', '16:00', '23:00'))
-ax2.set_title("DLMP heatmap — buses × time", fontsize=11)
+ax2.set_title("b) DLMP heatmap — buses × time", fontsize=11)
 
 # ── panel 3 : DLMP spread bar ─────────────────────────────────────────────────
 ax3 = fig.add_subplot(gs[2])
@@ -101,7 +101,7 @@ ax3.set_ylabel("DLMP spread (£/kWh)", fontsize=10)
 ax3.set_xticks([0,8,16,23],('00:00', '08:00', '16:00', '23:00'))
 ax3.legend(fontsize=8)
 ax3.grid(True, alpha=0.25, axis='y')
-ax3.set_title("DLMP spread across buses per timestep", fontsize=11)
+ax3.set_title("c) DLMP spread across buses per timestep", fontsize=11)
 
 # ── summary text box ──────────────────────────────────────────────────────────
 summary = (
